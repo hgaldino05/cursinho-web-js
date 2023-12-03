@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD Example</title>
+</head>
+<body>
+  <h1>CRUD Example</h1>
+
+  <h2>Add Item</h2>
+  <form id="addForm">
+    <input type="text" id="newItem" placeholder="Enter new item">
+    <button type="submit">Add</button>
+  </form>
+
+  <h2>List Items</h2>
+  <ul id="itemList"></ul>
+
+  <script>
+    const addForm = document.getElementById("addForm");
+    const newItemInput = document.getElementById("newItem");
+    const itemList = document.getElementById("itemList");
+
+    addForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+      const newItem = newItemInput.value;
+      if (newItem.trim() !== "") {
+        items.push(newItem);
+        newItemInput.value = "";
+        displayItems();
+      }
+    });
+
+    function displayItems() {
+      itemList.innerHTML = "";
+      items.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.textContent = `${index + 1}. ${item}`;
+        itemList.appendChild(li);
+      });
+    }
+
+    // Array para armazenar os dados
+    let items = [];
+
+    displayItems();
+  </script>
+</body>
+</html>
